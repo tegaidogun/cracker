@@ -12,6 +12,8 @@ use commands::rm;
 use commands::rmdir;
 use commands::touch;
 use commands::help;
+use commands::clear;
+use commands::echo;
 
 use std::env;
 use std::io::{self, Write};
@@ -53,6 +55,8 @@ pub fn start_shell() {
             "rmdir" => rmdir::rmdir(args),
             "touch" => touch::touch(args),
             "help" => help::help(args),
+            "echo" => echo::echo(args),
+            "clear" => clear::clear(),
             "exit" => break,
             _ => {
                 eprintln!("cracker: command not found: {}", command);
@@ -60,4 +64,3 @@ pub fn start_shell() {
         }
     }
 }
-
