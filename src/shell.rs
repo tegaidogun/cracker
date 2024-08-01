@@ -1,10 +1,7 @@
 use std::io::{self, Write};
-
-mod builtins;
-mod commands;
-mod help;
-mod redirection;
-mod utils;
+use crate::builtins;
+use crate::commands;
+use crate::utils;
 
 pub fn start() {
     loop {

@@ -1,6 +1,5 @@
 use std::env;
 use std::path::Path;
-use std::io;
 
 pub fn handle_builtin(command: &str, args: &[String]) -> bool {
     match command {

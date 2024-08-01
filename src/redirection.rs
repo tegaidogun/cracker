@@ -1,7 +1,7 @@
-use std::fs::File;
-use std::io::{self, Read, Write};
+use std::fs::{File, OpenOptions}; // Add OpenOptions here
 use std::process::{Command, Stdio};
 
+#[allow(dead_code)] // Remove this if the function will be used
 pub fn execute_with_redirection(command: &str, args: &[&str], input_redir: Option<&str>, output_redir: Option<&str>, append: bool) {
     let mut command_process = Command::new(command);
 
