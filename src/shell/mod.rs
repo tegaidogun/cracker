@@ -13,12 +13,17 @@ use commands::rmdir;
 use commands::touch;
 use commands::help;
 
+use std::env;
 use std::io::{self, Write};
 
 pub fn start_shell() {
     loop {
+        // Get the current working directory
+        let current_dir = env::current_dir().unwrap_or_else(|_| "unknown".into());
+        let prompt = format!("cracker | {}> ", current_dir.display());
+
         // Display the shell prompt
-        print!("cracker> ");
+        print!("{}", prompt);
         io::stdout().flush().unwrap();
 
         // Read user input
