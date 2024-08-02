@@ -19,8 +19,7 @@ use std::env;
 use std::path::{Path, PathBuf};
 use std::process::{Command, ExitStatus};
 use std::io;
-
-use std::io::{Write};
+use std::io::Write;
 
 pub fn start_shell(show_pwd: bool) {
     loop {
