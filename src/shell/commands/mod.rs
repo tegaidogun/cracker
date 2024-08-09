@@ -1,0 +1,12 @@
+pub mod cd;
+pub mod cp;
+pub mod clear;
+pub mod echo;
+pub mod exit;
+pub mod ls;
+pub mod mkdir;
+pub mod mv;
+pub mod pwd;
+pub mod rmdir;
+pub mod rm;
+pub mod touch;

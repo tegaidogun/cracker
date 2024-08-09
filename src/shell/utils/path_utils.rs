@@ -1,5 +1,6 @@
 use std::env;
-use std::path::{PathBuf, Path};
+use std::fs;
+use std::path::{Path, PathBuf};
 
 /// Resolves a given path by expanding environment variables and handling special cases like `~` for home directory.
 pub fn resolve_path(path: &str) -> PathBuf {
@@ -47,4 +48,24 @@ pub fn to_tilde_path(path: &Path) -> String {
         }
     }
     path.display().to_string()
+}
+
+/// Checks if a given path exists and is a directory.
+pub fn path_exists_and_is_dir(path: &Path) -> bool {
+    path.exists() && path.is_dir()
+}
+
+/// Copies a file or directory from source to destination.
+pub fn copy_path(source: &Path, destination: &Path) -> Result<(), String> {
+    if source.is_file() {
+        fs::copy(source, destination).map_err(|e| e.to_string())?;
+    } else if source.is_dir() {
+        fs::create_dir_all(destination).map_err(|e| e.to_string())?;
+        for entry in fs::read_dir(source).map_err(|e| e.to_string())? {
+            let entry = entry.map_err(|e| e.to_string())?;
+            let dest_path = destination.join(entry.file_name());
+            copy_path(&entry.path(), &dest_path)?;
+        }
+    }
+    Ok(())
 }
