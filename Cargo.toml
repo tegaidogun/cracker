@@ -1,8 +1,8 @@
 [package]
-name = "cracker"
+name = "crash"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-filetime = "0.2"
+shellexpand = "2.1"
 dirs = "4.0"
