@@ -120,6 +120,38 @@ pub fn run() {
                     last_status = 0;
                 }
             }
+            "pwd" => {
+                if let Err(e) = crate::shell::commands::pwd::pwd(&args) {
+                    eprintln!("{}", e);
+                    last_status = 1;
+                } else {
+                    last_status = 0;
+                }
+            }
+            "rm" => {
+                if let Err(e) = crate::shell::commands::rm::rm(&args) {
+                    eprintln!("{}", e);
+                    last_status = 1;
+                } else {
+                    last_status = 0;
+                }
+            }
+            "rmdir" => {
+                if let Err(e) = crate::shell::commands::rmdir::rmdir(&args) {
+                    eprintln!("{}", e);
+                    last_status = 1;
+                } else {
+                    last_status = 0;
+                }
+            }
+            "touch" => {
+                if let Err(e) = crate::shell::commands::touch::touch(&args) {
+                    eprintln!("{}", e);
+                    last_status = 1;
+                } else {
+                    last_status = 0;
+                }
+            }
             _ => {
                 if let Err(e) = execute_external(command, &args) {
                     handle_error(e);
